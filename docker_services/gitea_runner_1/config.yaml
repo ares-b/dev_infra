@@ -1,0 +1,38 @@
+server: account_1
+service:
+    name: gitea_runner_1
+    image: gitea/act_runner:0.2.11
+    restart_policy: always
+    environment:
+        - name: GITEA_INSTANCE_URL
+          value: ENC[AES256_GCM,data:q/qLk/3ao+sZBvhXWkOyeX0=,iv:ErxgjaeJfl1ztoINV6Ko3RFReGHuh3v98V4uB7GVAqY=,tag:DHHDR+uifroHk3dcyMp2NA==,type:str]
+        - name: GITEA_RUNNER_REGISTRATION_TOKEN
+          value: ENC[AES256_GCM,data:xD/0rcktkrX3fKKsO6mFW7xdmQT6i7jTFUHoE6ghQdeusxxIMr9KCA==,iv:UqUNiiKW1+CAxCWRb7Xe3Qgv3tmP+KDyvGCxAzW7zP8=,tag:EEBlov/s1pe07fiq7aYMgA==,type:str]
+        - name: GITEA_RUNNER_NAME
+          value: ENC[AES256_GCM,data:cFVWYqzJXUZhgeSW5wc=,iv:GtbNipEJFfD+NhnCLawIQBpE+v3XGMSNdE7PSBuuOQE=,tag:ZaErHTPqT/qF0LbklzjcqA==,type:str]
+    volumes:
+        - container_path: /var/run/docker.sock
+          host_path: /var/run/docker.sock
+          read_only: false
+    networks:
+        - name: gitea
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1n8rfgalwtjpujyvhweydjh2wnnxyfext87lah4x4mxnyee6ygecsqncvvk
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYL3pxRWlQSGwrNDZPemVv
+            R0FjYzhMSzJESUZLN3BtRkRUVHQrekk4TlNJCjY1cENBSFJOeUpqelA1WHZBcjli
+            Vzl1WnFneWdnZnpOMXlUV1E5d1ZxRFEKLS0tIDI2cDY3MnlLMzBXRWxpaDlUZzZC
+            SGlwMEhZQmMzNFYrcDJJVXFIM05yV2cKqj0HhInwrOnmJ2xkA+Y6QSGbNgbsvZXK
+            YwNf/iB8azjZinAxVe72rQzw7oCJXNmQ9PABrW4e8yYSol8g3UFznA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-02-11T22:47:44Z"
+    mac: ENC[AES256_GCM,data:oTKfmlbUFlIRF3yEtLywhaNTZJSDUrcZzdLnnWi/bcQa7m5uK1RuqtxlHtn7EWUOvaW3IoXyIz1e28etxT5uzGoVNXHEQN4kxotmJeYmLE/huekFa6LXoblD/L45evsNWb/4fX6Eda5UxQX39zrsiE8GUsFNSwf/Bhh1gGUCFu8=,iv:cw1BKxzBPcQP3juhhhFoq0XVzJXuScKL8Xea0NjDgZM=,tag:7rANW5gPIIVU+n337A5E/A==,type:str]
+    pgp: []
+    encrypted_regex: ^(value)$
+    version: 3.9.0

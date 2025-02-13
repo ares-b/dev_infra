@@ -1,0 +1,27 @@
+networks:
+    - name: gitea
+      subnet: 10.0.0.0/28
+    - name: openziti
+      subnet: 10.0.1.0/24
+    - name: semaphore
+      subnet: 10.0.2.0/28
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1n8rfgalwtjpujyvhweydjh2wnnxyfext87lah4x4mxnyee6ygecsqncvvk
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYL3pxRWlQSGwrNDZPemVv
+            R0FjYzhMSzJESUZLN3BtRkRUVHQrekk4TlNJCjY1cENBSFJOeUpqelA1WHZBcjli
+            Vzl1WnFneWdnZnpOMXlUV1E5d1ZxRFEKLS0tIDI2cDY3MnlLMzBXRWxpaDlUZzZC
+            SGlwMEhZQmMzNFYrcDJJVXFIM05yV2cKqj0HhInwrOnmJ2xkA+Y6QSGbNgbsvZXK
+            YwNf/iB8azjZinAxVe72rQzw7oCJXNmQ9PABrW4e8yYSol8g3UFznA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-02-12T21:08:10Z"
+    mac: ENC[AES256_GCM,data:vbZ2N8Twsy9qB36KOal+Q1LDN06C+Vz/hTatFaSr/Pd7bEH6Em598d8YTFWZnZR8MRcGzsbr41WKtFSo8ADoKp5YUy+4Tq2HDX3rT6eja9eFxyKutzpwckILk371ESN8iSm0Hbtu/NT/3xcvPZPEM7LDGvcsVSxC2eIoZS0ZWAs=,iv:V+ek5o4NKmqePql5mhT89IPB0wp0sjoiA/2YKqoco0M=,tag:WODjF10jo1EOeRAXPwRerg==,type:str]
+    pgp: []
+    encrypted_regex: ^(value)$
+    version: 3.9.0

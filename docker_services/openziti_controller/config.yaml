@@ -1,0 +1,56 @@
+server: account_1
+service:
+    name: openziti_controller
+    image: openziti/ziti-controller:1.3.3
+    restart_policy: always
+    privileged: true
+    user: 0
+    ports:
+        - internal: 1280
+          external: 1280
+    environment:
+        - name: ZITI_CTRL_ADVERTISED_ADDRESS
+          value: ENC[AES256_GCM,data:twfkVuaY21UJ6bU0MMkJ5fHnN4tJhU8hBW/8G42W5A==,iv:OkUOsqyziLc0bSxvXRaqAd/Dkl08tm4kHYydxCWMPJQ=,tag:VshDrDBq3VwikfapwWaJRw==,type:str]
+        - name: ZITI_CTRL_ADVERTISED_PORT
+          value: ENC[AES256_GCM,data:jf3LBw==,iv:KGtEaVp1u9lBYMmfzAlsUJfWVwgoI9aYe1GxhuLqI/0=,tag:f9HIi1xXuKIP4PxtBWTpTQ==,type:int]
+        - name: ZITI_PWD
+          value: ENC[AES256_GCM,data:QRsuc/Ad195ewg==,iv:TjE7g4ETKZejegk8zVX8+/q06PVRtG9EDxYN4SmxrUo=,tag:Zgf+tWi+89j4bhbLdFX92g==,type:str]
+        - name: ZITI_BOOTSTRAP
+          value: ENC[AES256_GCM,data:14JUGg==,iv:bCFx2jt89xxjRAzC3rrv+QYmAIwzJPf/OKFN4HVXq9A=,tag:z5jqnWnZwqHSyZu+aPj5Rg==,type:bool]
+        - name: ZITI_BOOTSTRAP_PKI
+          value: ENC[AES256_GCM,data:14JUGg==,iv:bCFx2jt89xxjRAzC3rrv+QYmAIwzJPf/OKFN4HVXq9A=,tag:z5jqnWnZwqHSyZu+aPj5Rg==,type:bool]
+        - name: ZITI_BOOTSTRAP_CONFIG
+          value: ENC[AES256_GCM,data:14JUGg==,iv:bCFx2jt89xxjRAzC3rrv+QYmAIwzJPf/OKFN4HVXq9A=,tag:z5jqnWnZwqHSyZu+aPj5Rg==,type:bool]
+        - name: ZITI_BOOTSTRAP_DATABASE
+          value: ENC[AES256_GCM,data:14JUGg==,iv:bCFx2jt89xxjRAzC3rrv+QYmAIwzJPf/OKFN4HVXq9A=,tag:z5jqnWnZwqHSyZu+aPj5Rg==,type:bool]
+        - name: ZITI_AUTO_RENEW_CERTS
+          value: ENC[AES256_GCM,data:14JUGg==,iv:bCFx2jt89xxjRAzC3rrv+QYmAIwzJPf/OKFN4HVXq9A=,tag:z5jqnWnZwqHSyZu+aPj5Rg==,type:bool]
+    command:
+        - run
+        - config.yml
+    volumes:
+        - container_path: /ziti-controller
+          host_path: /opt/openziti_controller
+          read_only: false
+    networks:
+        - name: openziti
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1n8rfgalwtjpujyvhweydjh2wnnxyfext87lah4x4mxnyee6ygecsqncvvk
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYL3pxRWlQSGwrNDZPemVv
+            R0FjYzhMSzJESUZLN3BtRkRUVHQrekk4TlNJCjY1cENBSFJOeUpqelA1WHZBcjli
+            Vzl1WnFneWdnZnpOMXlUV1E5d1ZxRFEKLS0tIDI2cDY3MnlLMzBXRWxpaDlUZzZC
+            SGlwMEhZQmMzNFYrcDJJVXFIM05yV2cKqj0HhInwrOnmJ2xkA+Y6QSGbNgbsvZXK
+            YwNf/iB8azjZinAxVe72rQzw7oCJXNmQ9PABrW4e8yYSol8g3UFznA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-02-11T20:41:26Z"
+    mac: ENC[AES256_GCM,data:5MW6Yia7hmWlDovjUVzz3WSW0RftywJ//kcY1fQL3KivHQKJSLhT8dEAe4NXajgyECRnORJfF5KZ5ySrjDqhVmFv4wZ+04Ib2gt3JhlzWRhL/93bPu6C2oMlt6OLitE0FW1gQu2AdkuHuXk7A7hPmO9nCvglL9AmpmZu05zz/zM=,iv:7YZ3exxD1jFb104mYKj6Q+hpn5p2PDaAwG+azsdqMfo=,tag:g6JMQVmF1FPuWAfWPt9mOQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(value)$
+    version: 3.9.0

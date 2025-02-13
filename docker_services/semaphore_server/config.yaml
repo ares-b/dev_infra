@@ -1,0 +1,53 @@
+server: account_1
+service:
+    name: semaphore_server
+    image: semaphoreui/semaphore:v2.12.9
+    restart_policy: always
+    privileged: true
+    user: 0
+    ports:
+        - internal: 5000
+          external: 5000
+    environment:
+        - name: SEMAPHORE_DB_DIALECT
+          value: ENC[AES256_GCM,data:4u2K2A==,iv:i7gFFNml1NFtRrc+eFieBUw72u69s8i/WbIHO+QhGvs=,tag:WRMMPMYvUnM4DgzEnEf1hQ==,type:str]
+        - name: SEMAPHORE_PORT
+          value: ENC[AES256_GCM,data:L9sU3Q==,iv:uMzhHDLcRaFGUk1ZIEm3vXNXIdvzIApaQdvsf9kVXok=,tag:lvDzEIOVo7ah+1o1Y6QkyQ==,type:int]
+        - name: SEMAPHORE_ADMIN
+          value: ENC[AES256_GCM,data:+eE7cg==,iv:34wk7MEdeIbhy3+2IoU6iopXmUzA8e0DB2YgFv3sKnU=,tag:RJ23pq+4p0+kWiSuWku8zw==,type:str]
+        - name: SEMAPHORE_ADMIN_PASSWORD
+          value: ENC[AES256_GCM,data:ViUZhf5nI0iKfQ==,iv:Ck+iqUk5kaT4R/ZUrkm3pLrVpyqd550mcagf6uIh1/g=,tag:gWah5zW1WiU7szJaAeKvCw==,type:str]
+        - name: SEMAPHORE_ADMIN_NAME
+          value: ENC[AES256_GCM,data:8RowXw==,iv:U1Z+IY1+YcFTCiSkOFP1vPTeYkZy3K7H0jUlEsG+sP4=,tag:avIRw55kiS8mXVh0auDOtQ==,type:str]
+        - name: SEMAPHORE_ADMIN_EMAIL
+          value: ENC[AES256_GCM,data:5BImlWv/QfSUMzyahxm6B8jtJ7WQ,iv:C64dtkyI3WSTrfrR9BNlEcECjbU1t67XpCROjNyTgj4=,tag:zM6xnKLN7Hb28K7d3EfrfA==,type:str]
+    volumes:
+        - container_path: /var/lib/semaphore
+          host_path: /opt/semaphore_server/data
+          read_only: false
+        - container_path: /etc/semaphore
+          host_path: /opt/semaphore_server/config
+          read_only: false
+    networks:
+        - name: semaphore
+        - name: openziti
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1n8rfgalwtjpujyvhweydjh2wnnxyfext87lah4x4mxnyee6ygecsqncvvk
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYL3pxRWlQSGwrNDZPemVv
+            R0FjYzhMSzJESUZLN3BtRkRUVHQrekk4TlNJCjY1cENBSFJOeUpqelA1WHZBcjli
+            Vzl1WnFneWdnZnpOMXlUV1E5d1ZxRFEKLS0tIDI2cDY3MnlLMzBXRWxpaDlUZzZC
+            SGlwMEhZQmMzNFYrcDJJVXFIM05yV2cKqj0HhInwrOnmJ2xkA+Y6QSGbNgbsvZXK
+            YwNf/iB8azjZinAxVe72rQzw7oCJXNmQ9PABrW4e8yYSol8g3UFznA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-02-12T22:25:01Z"
+    mac: ENC[AES256_GCM,data:WSXVFZmHMPktyCJPMBYybfZKzaMAPqQuufZryZPG5Hygn1qyD/Axk4c0LDmn93CFfjjepN+5vMAYAO9Up6yB8kbyBrKC6r3jS832omKZZJMaLzvpm8egTmbEZsjTVP2HacKdbQEDow9ydsDGHj+pKHGGVy7OETsMmyz6oBu5WQY=,iv:JLwRA/8ehaT7pcdwRMR5dYw2MNB2FKXd6fhHGilCKyw=,tag:GWoQWWeatufNtxx+uvKNCQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(value)$
+    version: 3.9.0

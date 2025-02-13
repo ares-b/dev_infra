@@ -1,0 +1,47 @@
+server: account_1
+service:
+    name: gitea
+    image: gitea/gitea:1.23.3
+    restart_policy: always
+    ports:
+        - internal: 3000
+          external: 3000
+        - internal: 2000
+          external: 2000
+    environment:
+        - name: GITEA__ACTIONS__ENABLED
+          value: ENC[AES256_GCM,data:GPthLg==,iv:iKjapy1UauD6CiLibZy3xAGMwUoeXRG0fExzljmW9Jg=,tag:pjHHTrfZ7lSMDaoxYOFPXg==,type:bool]
+        - name: GITEA__APP_NAME
+          value: ENC[AES256_GCM,data:IjPk0OCG+5MfKqEc,iv:oD1Qf8p1m8Br5bTnmCa3W8BkSPmII8RGgGV/y3LFEJM=,tag:NzF5GjQnTy7AwVZ/TNiBlA==,type:str]
+    volumes:
+        - container_path: /etc/localtime
+          host_path: /etc/localtime
+          read_only: true
+        - container_path: /etc/timezone
+          host_path: /etc/timezone
+          read_only: true
+        - container_path: /data
+          host_path: /opt/gitea
+    networks:
+        - name: gitea
+        - name: openziti
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1n8rfgalwtjpujyvhweydjh2wnnxyfext87lah4x4mxnyee6ygecsqncvvk
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYL3pxRWlQSGwrNDZPemVv
+            R0FjYzhMSzJESUZLN3BtRkRUVHQrekk4TlNJCjY1cENBSFJOeUpqelA1WHZBcjli
+            Vzl1WnFneWdnZnpOMXlUV1E5d1ZxRFEKLS0tIDI2cDY3MnlLMzBXRWxpaDlUZzZC
+            SGlwMEhZQmMzNFYrcDJJVXFIM05yV2cKqj0HhInwrOnmJ2xkA+Y6QSGbNgbsvZXK
+            YwNf/iB8azjZinAxVe72rQzw7oCJXNmQ9PABrW4e8yYSol8g3UFznA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-02-12T18:45:27Z"
+    mac: ENC[AES256_GCM,data:DFCjpewHZe86C7Y9E9E67YfHQZoTYjZq0cpep6fgwW2vcR3ESpTfAS+ZnCocbCFOpWGU5gcFZ5BYS+cmD+T32hEVsvXGd2ldU32Excgt6wBOhUExdgLxnIs55E+UDSRoXhikn4uBQaHL9iTJqOKU+DeedWsF7KApCnTt8QC1nT4=,iv:bRWFQNo0W5TPcU4OlnUqr90+m33TQ33Luua9W5jcY/s=,tag:EZuBHITaCC3a+E+oAwuFxA==,type:str]
+    pgp: []
+    encrypted_regex: ^(value)$
+    version: 3.9.0
