@@ -10,9 +10,14 @@ service:
           value: ENC[AES256_GCM,data:xD/0rcktkrX3fKKsO6mFW7xdmQT6i7jTFUHoE6ghQdeusxxIMr9KCA==,iv:UqUNiiKW1+CAxCWRb7Xe3Qgv3tmP+KDyvGCxAzW7zP8=,tag:EEBlov/s1pe07fiq7aYMgA==,type:str]
         - name: GITEA_RUNNER_NAME
           value: ENC[AES256_GCM,data:cFVWYqzJXUZhgeSW5wc=,iv:GtbNipEJFfD+NhnCLawIQBpE+v3XGMSNdE7PSBuuOQE=,tag:ZaErHTPqT/qF0LbklzjcqA==,type:str]
+        - name: CONFIG_FILE
+          value: ENC[AES256_GCM,data:N3uiRdkUqzWE0gW1TwqqKxI=,iv:ZVM5oLis1/L5pVhWnca1X88eOoJ3v7lhBUv/UWFGSXI=,tag:TO5hLsXcShfvtrjaN8dHbQ==,type:str]
     volumes:
         - container_path: /var/run/docker.sock
           host_path: /var/run/docker.sock
+          read_only: false
+        - container_path: /data
+          host_path: /opt/gitea_runner_1
           read_only: false
     networks:
         - name: gitea
@@ -31,8 +36,8 @@ sops:
             SGlwMEhZQmMzNFYrcDJJVXFIM05yV2cKqj0HhInwrOnmJ2xkA+Y6QSGbNgbsvZXK
             YwNf/iB8azjZinAxVe72rQzw7oCJXNmQ9PABrW4e8yYSol8g3UFznA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-02-11T22:47:44Z"
-    mac: ENC[AES256_GCM,data:oTKfmlbUFlIRF3yEtLywhaNTZJSDUrcZzdLnnWi/bcQa7m5uK1RuqtxlHtn7EWUOvaW3IoXyIz1e28etxT5uzGoVNXHEQN4kxotmJeYmLE/huekFa6LXoblD/L45evsNWb/4fX6Eda5UxQX39zrsiE8GUsFNSwf/Bhh1gGUCFu8=,iv:cw1BKxzBPcQP3juhhhFoq0XVzJXuScKL8Xea0NjDgZM=,tag:7rANW5gPIIVU+n337A5E/A==,type:str]
+    lastmodified: "2025-02-14T21:22:03Z"
+    mac: ENC[AES256_GCM,data:BJggA859KW77zfwzg0xblSQ7uYLyqjbh2P70LqVr/fdpLRXXU4AJx+IIQF0LoqCjRxiuE2VSBKdd6bdyU3YByXDrMvu3KMZb6kH6Pz6eFsFCq/s9XtdlkBdg8Z+fHEonKxdaBfAVFy4i+hVyrkm9qm3CqIqMi5E4TqkD7ml1C+M=,iv:bgJexz4ryxZlsyfoiy0NyWFvh5WWfnhKwk5opuGUcuk=,tag:aEkGsj/9efTe16v1VHmUjw==,type:str]
     pgp: []
     encrypted_regex: ^(value)$
     version: 3.9.0
